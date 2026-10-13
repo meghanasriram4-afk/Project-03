@@ -12,8 +12,7 @@ const unsigned long scanInterval = 500;
 struct SensorData {
   float gasPPM;
   float tempC;
-  float lux1;
-  float lux2;
+  float lux;
 } payload;
 
 void setup() {
@@ -31,15 +30,13 @@ void loop() {
     int rawTemp = analogRead(TEMP_PIN);
     payload.tempC = (rawTemp * (5.0 / 1023.0) - 0.5) * 100.0;
     
-    payload.gasPPM = map(analogRead(GAS_PIN), 0, 1023, 200, 10000);
-    payload.lux1 = map(analogRead(LDR1_PIN), 0, 1023, 0, 10000);
-    payload.lux2 = map(analogRead(LDR2_PIN), 0, 1023, 0, 10000);
+    payload.gasPPM = analogRead(GAS_PIN);
+    payload.lux2 = analogRead(LDR_PIN);
 
     // Print to Node A Serial Monitor
     Serial.print("Temp: "); Serial.print(payload.tempC);
     Serial.print(" | Gas: "); Serial.print(payload.gasPPM);
-    Serial.print(" | LDR1: "); Serial.print(payload.lux1);
-    Serial.print(" | LDR2: "); Serial.println(payload.lux2);
+    Serial.print(" | LDR: "); Serial.println(payload.lux);
   }
 }
 

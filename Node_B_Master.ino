@@ -4,8 +4,7 @@
 struct SensorData {
   float gasPPM;
   float tempC;
-  float lux1;
-  float lux2;
+  float lux;
 } payload;
 
 void setup() {
@@ -25,8 +24,7 @@ void loop() {
     // Print to Node B Serial Monitor to prove I2C works
     Serial.print("RECEIVED -> Temp: "); Serial.print(payload.tempC);
     Serial.print(" | Gas: "); Serial.print(payload.gasPPM);
-    Serial.print(" | LDR1: "); Serial.print(payload.lux1);
-    Serial.print(" | LDR2: "); Serial.println(payload.lux2);
+    Serial.print(" | LDR2: "); Serial.println(payload.lux);
   }
   delay(1000); 
 }
