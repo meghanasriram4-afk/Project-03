@@ -1,7 +1,7 @@
 #include <Wire.h>
 
-#define GAS_PIN A0
-#define TEMP_PIN A1
+#define TEMP_PIN A0
+#define GAS_PIN A1
 #define LDR1_PIN A2
 #define LDR2_PIN A3 // Tumhara dusra photoresistor
 
