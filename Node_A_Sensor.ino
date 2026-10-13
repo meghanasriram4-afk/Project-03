@@ -53,4 +53,30 @@ void loop() {
 void requestEvent() {
   // Serialize and send the byte representation of the struct payload over the I2C bus
   Wire.write((byte*)&payload, sizeof(payload)); 
+ const int ldrPin = A2;
+
+void setup() {
+  Serial.begin(9600);        // Initialize serial communication
+  pinMode(ldrPin, INPUT);    // Set A2 as input
 }
+
+void loop() {
+  int lightValue = analogRead(ldrPin);   // Read value (0-1023)
+
+  Serial.print("ADC Value: ");
+  Serial.print(lightValue);
+
+  // Classification based on light level
+  if (lightValue < 300) {
+    Serial.println("  --> LOW Light");
+  } 
+  else if (lightValue < 700) {
+    Serial.println("  --> MEDIUM Light");
+  } 
+  else {
+    Serial.println("  --> HIGH Light");
+  }
+
+  delay(500);
+}
+  
